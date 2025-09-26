@@ -1,23 +1,19 @@
-import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
+import { nanoid } from "nanoid";
 
 const Create = () => {
-  const { data, setdata } = useContext(recipecontext);
+  const {data, setdata} = useContext(recipecontext);
   const { register, handleSubmit, reset } = useForm();
 
   const SubmitHandler = (recipe) => {
     recipe.id = nanoid();
 
-    // const copydata = [...data]
-    // copydata.push(recipe)
-    // setdata(copydata)
-
     setdata([...data, recipe]);
-
     reset();
-  };
+  }  
+
   return (
     <form onSubmit={handleSubmit(SubmitHandler)}>
       <input
@@ -26,9 +22,7 @@ const Create = () => {
         type="url"
         placeholder="Enter image Url"
       />
-
-      <small className="text-red-300">This is how the error is shown</small>
-
+      <small className="text-red-300">This is how this error is shown</small>
       <input
         className="block border-b outline-0 p-2"
         {...register("title")}
@@ -41,27 +35,19 @@ const Create = () => {
         type="text"
         placeholder="Chef Name"
       />
-
       <textarea
         className="block border-b outline-0 p-2"
         {...register("description")}
         placeholder="start from here"
       ></textarea>
-
       <textarea
         className="block border-b outline-0 p-2"
         {...register("ingredients")}
         placeholder="//write ingredients seperated by comma"
       ></textarea>
 
-      <textarea
-        className="block border-b outline-0 p-2"
-        {...register("instructions")}
-        placeholder="//write instructions seperated by comma"
-      ></textarea>
-
       <select
-        className="block border-b outline-0 p-2 bg-black rounded mt-5"
+        className="block border-b outline-0 p-2 bg-black mt-5 rounded"
         {...register("category")}
       >
         <option value="cat-1">Category 1</option>
@@ -69,9 +55,7 @@ const Create = () => {
         <option value="cat-3">Category 3</option>
       </select>
 
-      <button className="mt-5 block bg-gray-900 px-4 py-2 rounded">
-        Save Recipe
-      </button>
+      <button className="mt-5 block bg-gray-900 px-4 py-2 rounded">Save Recipe</button>
     </form>
   );
 };

@@ -5,8 +5,8 @@ const Recipes = () => {
   const { data } = useContext(recipecontext);
 
   const renderrecipes = data.map((recipe) => (
-    <div key={recipe.id} >
-      <h1> {recipe.title} </h1>
+    <div key={recipe.id}>
+      <h1>{recipe.title}</h1>
     </div>
   ));
 
