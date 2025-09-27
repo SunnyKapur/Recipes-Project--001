@@ -9,7 +9,6 @@ const Recipes = () => {
       <h1>{recipe.title}</h1>
     </div>
   ));
-
   return <div>{renderrecipes}</div>;
 };
 
