@@ -7,29 +7,28 @@ import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const navigate = useNavigate();
-
-  const { data, setdata } = useContext(recipecontext);
-
+   const {data,setdata} = useContext(recipecontext);
   const { register, handleSubmit, reset } = useForm();
+
 
   const SubmitHandler = (recipe) => {
     recipe.id = nanoid();
 
     setdata([...data, recipe]);
 
-    toast.success("New recipe created!");
+    toast.success("Created Recipe!");
+
+    navigate("/recipes")
 
     reset();
-
-    navigate("/recipes");
-  };
+  }
   return (
     <form onSubmit={handleSubmit(SubmitHandler)}>
       <input
         className="block border-b outline-0 p-2"
         {...register("image")}
         type="url"
-        placeholder="Enter Image Url"
+        placeholder="Enter image Url"
       />
 
       <small className="text-red-300">This is how the error is shown</small>
@@ -41,12 +40,12 @@ const Create = () => {
         placeholder="Recipe Title"
       />
 
-      <textarea
+      <input
         className="block border-b outline-0 p-2"
         {...register("chef")}
         type="text"
         placeholder="Chef Name"
-      ></textarea>
+      />
 
       <textarea
         className="block border-b outline-0 p-2"
@@ -67,7 +66,7 @@ const Create = () => {
       ></textarea>
 
       <select
-        className="block border-b outline-0 p-2 bg-black rounded mt-5"
+        className="block border-b outline-0 p-2 bg-black mt-5 rounded"
         {...register("category")}
       >
         <option value="breakfast">Breakfast</option>
@@ -76,9 +75,8 @@ const Create = () => {
         <option value="dinner">Dinner</option>
       </select>
 
-      <button className="mt-5 block bg-gray-900 px-4 py-2 rounded">
-        Save Recipe
-      </button>
+
+       <button className="mt-5 block bg-gray-900 px-4 py-2 rounded">Save Recipe</button>
     </form>
   );
 };

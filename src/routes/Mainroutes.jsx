@@ -6,17 +6,15 @@ import Create from "../pages/Create";
 import SingleRecipe from "../pages/SingleRecipe";
 
 const Mainroutes = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+  return <Routes>
+    <Route path="/" element={<Home />} />
 
-      <Route path="/recipes" element={<Recipes />} />
-      <Route path="/recipes/details/:id" element={<SingleRecipe />} />
-      <Route path="/create-recipe" element={<Create />} />
+    <Route path="/recipes" element={<Recipes />} />
+    <Route path="/recipes/details/:id" element={<SingleRecipe />} />
+    <Route path="/create-recipe" element={<Create />} />
 
-      <Route path="/about" element={<About />} />
-    </Routes>
-  );
+    <Route path="/about" element={<About />} />
+  </Routes>
 };
 
 export default Mainroutes;

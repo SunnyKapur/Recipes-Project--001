@@ -5,51 +5,48 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const SingleRecipe = () => {
-    const { data, setdata } = useContext(recipecontext);
+  const { data, setdata } = useContext(recipecontext);
   const navigate = useNavigate();
-
-    const params = useParams();
-
+  const params = useParams();
   const recipe = data.find((recipe) => params.id == recipe.id);
 
-
-  const { register, handleSubmit, reset } = useForm({defaultValues: {
-    title: recipe.title,
-    chef: recipe.chef,
-    image: recipe.image,
-    inst: recipe.desc,
-    inst: recipe.ingr
-
-  } });
+  const { register, handleSubmit, reset } = useForm({
+    defaultValue: {
+      title: recipe.title,
+      chef: recipe.chef,
+      image:recipe.image,
+      inst:recipe.inst,
+      desc: recipe.desc,
+      ingr: recipe.ingr
+    },
+  });
 
   const SubmitHandler = (recipe) => {
-
     const index = data.findIndex((recipe) => params.id == recipe.id);
 
     const copydata = [...data];
+
     copydata[index] = { ...copydata[index], ...recipe };
+
     setdata(copydata);
-    toast.success("Recipe updated!");
+
+    toast.success("Recipe Updated");
   };
-
-
-
-  //   console.log(recipe);
 
   const DeleteHandler = () => {
     const filterdata = data.filter((r) => r.id != params.id);
-
     setdata(filterdata);
     toast.success("Recipe deleted!");
-
     navigate("/recipes");
   };
+
+  //   console.log(recipe);
 
   return recipe ? (
     <div className="w-full flex">
       <div className="left w-1/2 p-2">
-        <h1 className="text-5xl font-black ">{recipe.title}</h1>
-        <img className="h-[20vh]" src={recipe.image} alt="" />
+        <h1 className="text-5xl font-black">{recipe.title}</h1>
+        <img className="h-[20vh] rounded mt-2" src={recipe.image} alt="" />
       </div>
 
       <div className="right w-1/2 p-2">
@@ -57,7 +54,6 @@ const SingleRecipe = () => {
           <input
             className="block border-b outline-0 p-2"
             {...register("image")}
-           
             type="url"
             placeholder="Enter Image Url"
           />
@@ -67,23 +63,20 @@ const SingleRecipe = () => {
           <input
             className="block border-b outline-0 p-2"
             {...register("title")}
-            
             type="text"
             placeholder="Recipe Title"
           />
 
-          <textarea
+          <input
             className="block border-b outline-0 p-2"
             {...register("chef")}
-            
             type="text"
             placeholder="Chef Name"
-          ></textarea>
+          />
 
           <textarea
             className="block border-b outline-0 p-2"
             {...register("desc")}
-            value={recipe.desc}
             placeholder="start from here"
           ></textarea>
 
@@ -100,9 +93,8 @@ const SingleRecipe = () => {
           ></textarea>
 
           <select
-            className="block border-b outline-0 p-2 bg-black rounded mt-5"
+            className="block border-b outline-0 p-2 bg-black mt-5 rounded"
             {...register("category")}
-            
           >
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>

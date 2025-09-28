@@ -23,15 +23,14 @@ const RecipeContext = (props) => {
         "Bake in the preheated oven for 12-15 minutes or until the crust is golden brown.",
         "Slice and serve hot.",
       ],
-
+      
       image: "https://cdn.dummyjson.com/recipe-images/1.webp",
       chef: "Pankaj Chamoli",
       category: "dinner",
-      desc: "Roll out the pizza dough and spread tomato sauce evenly.Bake in the preheated oven for 12-15 minutes or until the crust is golden brown.Slice and serve hot.",
+      desc: "Roll out the pizza dough and spread tomato sauce evenly.Slice and serve hot.Drizzle with olive oil and season with salt and pepper.",
     },
   ]);
-
-  console.log(data);
+  // console.log(data);
   return (
     <recipecontext.Provider value={{ data, setdata }}>
       {props.children}
