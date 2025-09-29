@@ -1,23 +1,25 @@
 import { useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { recipecontext } from "../context/RecipeContext";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const SingleRecipe = () => {
   const { data, setdata } = useContext(recipecontext);
+
   const navigate = useNavigate();
+
   const params = useParams();
+
   const recipe = data.find((recipe) => params.id == recipe.id);
 
   const { register, handleSubmit, reset } = useForm({
-    defaultValue: {
+    defaultValues: {
       title: recipe.title,
       chef: recipe.chef,
-      image:recipe.image,
-      inst:recipe.inst,
+      image: recipe.image,
       desc: recipe.desc,
-      ingr: recipe.ingr
+      inst: recipe.inst,
     },
   });
 
@@ -30,23 +32,24 @@ const SingleRecipe = () => {
 
     setdata(copydata);
 
-    toast.success("Recipe Updated");
+    toast.success("Recipe updated!");
   };
 
   const DeleteHandler = () => {
     const filterdata = data.filter((r) => r.id != params.id);
+
     setdata(filterdata);
+
     toast.success("Recipe deleted!");
+
     navigate("/recipes");
   };
-
-  //   console.log(recipe);
 
   return recipe ? (
     <div className="w-full flex">
       <div className="left w-1/2 p-2">
-        <h1 className="text-5xl font-black">{recipe.title}</h1>
-        <img className="h-[20vh] rounded mt-2" src={recipe.image} alt="" />
+        <h1 className="text-5xl font-black ">{recipe.title}</h1>
+        <img className="h-[20vh]" src={recipe.image} alt="" />
       </div>
 
       <div className="right w-1/2 p-2">
@@ -55,7 +58,7 @@ const SingleRecipe = () => {
             className="block border-b outline-0 p-2"
             {...register("image")}
             type="url"
-            placeholder="Enter Image Url"
+            placeholder="Enter image Url"
           />
 
           <small className="text-red-300">This is how the error is shown</small>
@@ -98,7 +101,7 @@ const SingleRecipe = () => {
           >
             <option value="breakfast">Breakfast</option>
             <option value="lunch">Lunch</option>
-            <option value="supper">Supper</option>
+            <option value="super">Super</option>
             <option value="dinner">Dinner</option>
           </select>
 

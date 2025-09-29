@@ -2,26 +2,23 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
   const navigate = useNavigate();
-   const {data,setdata} = useContext(recipecontext);
-  const { register, handleSubmit, reset } = useForm();
 
+  const {data, setdata} = useContext(recipecontext);
+
+  const { register, handleSubmit, reset } = useForm();
 
   const SubmitHandler = (recipe) => {
     recipe.id = nanoid();
 
     setdata([...data, recipe]);
 
-    toast.success("Created Recipe!");
-
-    navigate("/recipes")
-
     reset();
-  }
+    navigate("/recipes");
+  };
   return (
     <form onSubmit={handleSubmit(SubmitHandler)}>
       <input
@@ -75,8 +72,9 @@ const Create = () => {
         <option value="dinner">Dinner</option>
       </select>
 
-
-       <button className="mt-5 block bg-gray-900 px-4 py-2 rounded">Save Recipe</button>
+      <button className="mt-5 block bg-gray-900 px-4 py-2 rounded">
+        Save Recipe
+      </button>
     </form>
   );
 };
