@@ -20,6 +20,7 @@ const SingleRecipe = () => {
       image: recipe.image,
       desc: recipe.desc,
       inst: recipe.inst,
+      ingr: recipe.ingr,
     },
   });
 
@@ -50,6 +51,8 @@ const SingleRecipe = () => {
       <div className="left w-1/2 p-2">
         <h1 className="text-5xl font-black ">{recipe.title}</h1>
         <img className="h-[20vh]" src={recipe.image} alt="" />
+        <h1>{recipe.chef}</h1>
+        <p>{recipe.desc}</p>
       </div>
 
       <div className="right w-1/2 p-2">
@@ -66,6 +69,7 @@ const SingleRecipe = () => {
           <input
             className="block border-b outline-0 p-2"
             {...register("title")}
+            
             type="text"
             placeholder="Recipe Title"
           />

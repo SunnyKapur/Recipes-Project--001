@@ -1,18 +1,21 @@
-import axios from "axios";
+import axios from "../utils/Axios";
 
 const Home = () => {
   const getproduct = async () => {
     try {
-      const { data } = await axios.get("https://fakestoreapi.com/products/1");
-      console.log(data);
+      const response = await axios.get("/products");
+      console.log(response.data);
+      
     } catch (error) {
       console.log(error);
     }
   };
-  return <div>
-    <h1>Home</h1>
-    <button onClick={getproduct}>Get Products</button>
-  </div>;
+  return (
+    <div>
+      <h1>Home</h1>
+      <button onClick={getproduct}>Get Products</button>
+    </div>
+  );
 };
 
 export default Home;
