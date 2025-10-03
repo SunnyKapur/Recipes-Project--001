@@ -1,5 +1,5 @@
-import Navbar from "./components/Navbar";
-import Mainroutes from "./routes/Mainroutes";
+import Navbar from "./components/Navbar"
+import Mainroutes from "./routes/Mainroutes"
 
 const App = () => {
   return (
@@ -7,7 +7,7 @@ const App = () => {
       <Navbar />
       <Mainroutes />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

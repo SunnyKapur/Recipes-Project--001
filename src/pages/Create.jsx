@@ -1,14 +1,14 @@
-import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
+import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+
   const navigate = useNavigate();
 
-  const {data, setdata} = useContext(recipecontext);
-
+  const {data, setdata} = useContext(recipecontext)
   const { register, handleSubmit, reset } = useForm();
 
   const SubmitHandler = (recipe) => {
@@ -17,8 +17,9 @@ const Create = () => {
     setdata([...data, recipe]);
 
     reset();
-    navigate("/recipes");
-  };
+    navigate("/recipes")
+  }
+
   return (
     <form onSubmit={handleSubmit(SubmitHandler)}>
       <input
@@ -33,39 +34,32 @@ const Create = () => {
       <input
         className="block border-b outline-0 p-2"
         {...register("title")}
-        type="text"
-        placeholder="Recipe Title"
+        type="title"
+        placeholder="Recipe title"
       />
-
       <input
         className="block border-b outline-0 p-2"
         {...register("chef")}
         type="text"
         placeholder="Chef Name"
       />
-
       <textarea
         className="block border-b outline-0 p-2"
         {...register("desc")}
-        placeholder="start from here"
+        placeholder="Start from here"
       ></textarea>
-
       <textarea
         className="block border-b outline-0 p-2"
         {...register("ingr")}
         placeholder="//write ingredients seperated by comma"
       ></textarea>
-
       <textarea
         className="block border-b outline-0 p-2"
         {...register("inst")}
-        placeholder="//write instructions seperated by comma"
+        placeholder="//write instruction seperated by comma"
       ></textarea>
 
-      <select
-        className="block border-b outline-0 p-2 bg-black mt-5 rounded"
-        {...register("category")}
-      >
+      <select className="block border-b outline-0 p-2 bg-black rounded mt-5" {...register("category")}>
         <option value="breakfast">Breakfast</option>
         <option value="lunch">Lunch</option>
         <option value="supper">Supper</option>
