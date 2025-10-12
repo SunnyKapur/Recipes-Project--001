@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { recipecontext } from "../context/RecipeContext";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,6 +24,7 @@ const SingleRecipe = () => {
     },
   });
 
+
   const SubmitHandler = (recipe) => {
     const index = data.findIndex((recipe) => params.id == recipe.id);
 
@@ -35,7 +36,7 @@ const SingleRecipe = () => {
 
     toast.success("Recipe updated!");
 
-    navigate("/recipes");
+    // navigate("/recipes");
   };
 
   const DeleteHandler = () => {
@@ -45,14 +46,26 @@ const SingleRecipe = () => {
 
     toast.success("Recipe deleted!");
 
-    navigate("/recipe");
+    // navigate("/recipe");
   };
+
+
+  useEffect(() => {
+    console.log("SingleRecipe jsx Mounted");
+
+    return () => {
+      console.log("SingleRecipe jsx Unmounted")
+    }
+  }, [])
 
   return recipe ? (
     <div className="w-full flex">
       <div className="left w-1/2 p-2">
-        <h1>{recipe.title}</h1>
+        <h1 className="text-5xl font-black">{recipe.title}</h1>
         <img className="h-[20vh] rounded mt-2" src={recipe.image} alt="" />
+        <h1>{recipe.chef}</h1>
+        <p>{recipe.desc}</p>
+
       </div>
       <div className="right w-1/2 p-2">
         <form className="w-1/2 p-2" onSubmit={handleSubmit(SubmitHandler)}>
